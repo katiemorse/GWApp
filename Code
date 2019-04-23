@@ -1,0 +1,113 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+
+
+
+  # show the label on the screen
+
+class GlampingWorldApp(tk.Tk):
+   
+    # Sets up initial class for replication on other pages/windows
+
+    def __init__(self, *args, **kwargs):  
+        tk.Tk.__init__(self, *args, **kwargs)
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand = False)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = { }
+
+        for F in (page1, page2, page3, page5, page6):
+            frame = F(container, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+        self.show_frame(page1)
+        
+    # The function that will allow button pushes to work as window generators
+
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+        tk.Tk.update(self)
+    
+    # Function that allows for calculation of total price 
+
+    def calc_Total(self):
+        quantity = float(self.quantityEnt.get())
+        price = float(self.priceEnt.get())
+        total = quantity * price
+
+        self.totalVar.set(format(total, '10.2f'))
+        self.quantityEnt.select_clear()
+        self.priceEnt.select_clear()
+        self.IDent.select_clear()  
+       
+         
+
+    
+
+class page1(tk.Frame):
+
+    # Start page, or Page 1, for employees to log in.
+    # In our case, we will always use the "New Customer" option as we don't have a database
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+ 
+        # The code for the left side of Page 1
+        # Specifies which page of the process we are on by bolding that page
+
+        left_frame = tk.Frame(self, width=200, height=350, bg="grey")
+        left_frame.pack_propagate(0)
+
+        right_frame = tk.Frame(self, width=400, height=350, bg="lightgrey")
+        right_frame.pack_propagate(0)
+
+        
+        photo = PhotoImage(file=r"C:\Users\Altab03\Desktop\GWApp\GWlogo.gif") # specify the path to your file
+        label = Label(self, image=photo)  #put the image in a label to disdaply it in the window
+        label.image = photo
+        label.pack(side=tk.TOP)
+        
+
+        page_name_label = tk.Label(self, text="Employee Login Page", fg="black", bg="white", font=(None, 15))
+        page_name_label.pack(side=tk.TOP, expand=1, fill=tk.X)
+        
+        tab1 = tk.Label(left_frame, text="Login Page", font=("Helvetica", 10, "bold"), bg="grey")
+        tab2 = tk.Label(left_frame, text="Customer Info Page", bg="grey")
+        tab4 = tk.Label(left_frame, text="Products Page", bg="grey")
+        tab5 = tk.Label(left_frame, text="Payment Info", bg="grey")
+        tab6 = tk.Label(left_frame, text="Order Confirmation", bg="grey")
+        helpButton = tk.Button(left_frame, text="HELP")
+        helpButton.pack(side=tk.BOTTOM)
+        
+        #panel.pack(side=tk.TOP)
+        tab1.pack(side=tk.TOP)
+        tab2.pack(side=tk.TOP)
+        tab4.pack(side=tk.TOP)
+        tab5.pack(side=tk.TOP)
+        tab6.pack(side=tk.TOP)
+
+        left_frame.pack(side=tk.LEFT, fill=tk.BOTH)
+        
+        # Code for right side of Page 1
+        # First page will prompt for a returning user to sign in or a new user to sign up
+
+        emaillabel = tk.Label(right_frame, text="Username", bg="lightgrey")
+        emaillabel.pack()
+        emailfield = tk.Entry(right_frame)
+        emailfield.pack()
+        passlabel = tk.Label(right_frame, text="Password", bg="lightgrey")
+        passlabel.pack()
+        passfield = tk.Entry(right_frame)
+        passfield.pack()
+
+        newUserButton = tk.Button(right_frame, text="Skip Login", command=lambda: controller.show_frame(page2))
+        newUserButton.pack(pady = 10)
+        oldUserButton = tk.Button(right_frame, text="Login")
+        oldUserButton.pack()
+
+        right_frame.pack(side=tk.LEFT, expand=1, fill=tk.BOTH)
