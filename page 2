@@ -1,0 +1,198 @@
+class page2(tk.Frame):
+
+
+
+def __init__(self,
+parent, controller):
+
+tk.Frame.__init__(self,parent)
+
+
+# Left side of Page 2 of the GUI
+
+# Will be the same as the rest, but this time we bold the second page and add navigational buttons
+
+
+
+left_frame2 = tk.Frame(self, 
+width=200, 
+height=350, 
+bg="grey")
+
+left_frame2.pack_propagate(0)
+
+right_frame2 = tk.Frame(self, 
+width=400, 
+height=350, 
+bg="lightgrey")
+
+right_frame2.pack_propagate(0)
+
+
+
+photo = PhotoImage(file=r"C:\Users\Altab03\Desktop\GWApp\GWlogo.gif")
+# specify the path to your file
+
+label = Label(self, 
+image=photo) #put the image in a label to disdaply it in the window
+
+label.image = photo
+
+label.pack(side=tk.TOP)
+
+
+
+page_name_label2 = tk.Label(self, 
+text="Customer Info Page", 
+fg="black", 
+bg="white", 
+font=(None, 
+15))
+
+page_name_label2.pack(side=tk.TOP, 
+expand=1, 
+fill=tk.X)
+
+
+tab12 = tk.Label(left_frame2, text="Login Page",
+bg="grey")
+
+tab22 = tk.Label(left_frame2, text="Customer Info Page",
+font=("Helvetica",
+10, "bold"),
+bg="grey")
+
+tab42 = tk.Label(left_frame2, text="Products Page",
+bg="grey")
+
+tab52 = tk.Label(left_frame2, text="Payment Info",
+bg="grey")
+
+tab62 = tk.Label(left_frame2, text="Order Confirmation",
+bg="grey")
+
+
+
+# The navigational buttons will allow the user to go from page to page easily
+
+
+
+backButton = tk.Button(left_frame2, text="Previous Page",
+command=lambda: controller.show_frame(page1))
+
+nextButton = tk.Button(left_frame2, text="Next Page",
+command=lambda: controller.show_frame(page3))
+
+helpButton = tk.Button(left_frame2, text="HELP")
+
+
+
+
+tab12.pack(side=tk.TOP)
+
+tab22.pack(side=tk.TOP)
+
+tab42.pack(side=tk.TOP)
+
+tab52.pack(side=tk.TOP)
+
+tab62.pack(side=tk.TOP)
+
+helpButton.pack(side=tk.BOTTOM)
+
+nextButton.pack(side=tk.BOTTOM)
+
+backButton.pack(side=tk.BOTTOM)
+
+
+
+
+
+
+left_frame2.pack(side=tk.LEFT, 
+fill=tk.BOTH)
+
+
+
+#right side of page 2
+
+customerName = tk.Label(right_frame2, text="First Name *",
+bg="lightgrey")
+
+customerLName = tk.Label(right_frame2, text="Last Name *",
+bg="lightgrey")
+
+customerEmail = tk.Label(right_frame2, text="Email Address *",
+bg="lightgrey")
+
+customerPass = tk.Label(right_frame2, text="Account Password *",
+bg="lightgrey")
+
+customerAddress = tk.Label(right_frame2, text="Address Line 1 *",
+bg="lightgrey")
+
+customerCity = tk.Label(right_frame2, text="City *",
+bg="lightgrey")
+
+customerState = tk.Label(right_frame2, text="State *",
+bg="lightgrey")
+
+customerZip = tk.Label(right_frame2, text="Zip *",
+bg="lightgrey")
+
+
+
+cusNfield = tk.Entry(right_frame2)
+
+cusLNfield = tk.Entry(right_frame2)
+
+cusEfield = tk.Entry(right_frame2)
+
+cusPfield = tk.Entry(right_frame2)
+
+cusAdfield = tk.Entry(right_frame2)
+
+cusCfield = tk.Entry(right_frame2)
+
+cusStatefield = tk.Entry(right_frame2)
+
+cusZipfield = tk.Entry(right_frame2)
+
+
+customerName.pack(side=TOP)
+
+cusNfield.pack(side=TOP)
+
+customerLName.pack(side=TOP)
+
+cusLNfield.pack(side=TOP)
+
+customerEmail.pack(side=TOP)
+
+cusEfield.pack(side=TOP)
+
+customerPass.pack(side=TOP)
+
+cusPfield.pack(side=TOP)
+
+customerAddress.pack(side=TOP)
+
+cusAdfield.pack(side=TOP)
+
+customerCity.pack(side=TOP)
+
+cusCfield.pack(side=TOP)
+
+customerState.pack(side=TOP)
+
+cusStatefield.pack(side=TOP)
+
+customerZip.pack(side=TOP)
+
+cusZipfield.pack(side=TOP)
+
+
+
+right_frame2.pack(side=tk.LEFT, 
+expand=1, 
+fill=tk.BOTH)
